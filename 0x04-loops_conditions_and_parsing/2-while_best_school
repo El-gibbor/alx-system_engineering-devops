@@ -2,8 +2,7 @@
 # displays "Best School" 10x using while loop
 
 count=1
-while [[ ${count} -le 10 ]]
- do
+while [[ ${count} -le 10 ]]; do
     echo "Best School"
     ((count++))
 done
