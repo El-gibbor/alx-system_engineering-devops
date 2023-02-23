@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# displays "Best School" 10x using until loop
+
+count=1
+until [[ ${count} -gt 10 ]]; do
+    echo "Best School"
+    ((count++))
+done
