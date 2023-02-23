@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# display 10x a given string, and different string on the $th and 8th line
+# display 10x a given string, and different string on the $th and 8th line.
 
 count=1
 while [[ ${count} -le 10 ]]; do
