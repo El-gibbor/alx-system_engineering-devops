@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# displays all content of the current directory in a given format
+
+for file in *; do
+    echo "${file}" | cut -d "_" -f2
+    done
