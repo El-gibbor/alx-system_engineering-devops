@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 # displays all content of the current directory in a given format
 
-mylist=$(ls)
-
-for i in $mylist; do
-  echo "$i" | cut -d '-' -f2
+for file in *; do
+    echo "${file}" | cut -d "_" -f2
 done
