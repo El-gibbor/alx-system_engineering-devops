@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-# displays all content of the current directory In a list format
-# Where only the part of the name after the first dash is displayed (refer to the example)
-
-lists=$(ls)
-
-for i in ${lists}; do
-  echo "${i}" | cut -d '-' -f2
-done
