@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
-# displays all content of the current directory in a given format
+# displays all content of the current directory In a list format
+# Where only the part of the name after the first dash is displayed (refer to the example)
 
-for file in *; do
-    echo "${file}" | cut -d "_" -f2
+lists=$(ls)
+
+for i in ${lists}; do
+  echo "${i}" | cut -d '-' -f2
 done
