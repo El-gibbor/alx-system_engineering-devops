@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# a scripts that gives information about a script
+
+if [ -f ]
