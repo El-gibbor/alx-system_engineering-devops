@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# loop to read and display the content of the /etc/passwd file
+# while extracting and displaying the username,
+# user ID, and home directory path
+# Check if the /etc/passwd file exists
+
+while IFS= read -r line; do
+    echo "$line" | cut -d":" -f1,3,6
+done < "/etc/passwd"
