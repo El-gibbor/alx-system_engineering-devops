@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # lists of currently running processes.
 
-ps -axuf
+ps auxf | grep bash
