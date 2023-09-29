@@ -16,26 +16,26 @@ int infinite_while(void)
 }
 
 /**
- * main - 5 zombie processes.
+ * main - 5 zombie_procss processes.
  *
  * Return: 0 (Success)
  */
 int main(void)
 {
-	int i;
-	pid_t zombie;
+	int i = 0;
+	pid_t zombie_procss;
 
-	for (i = 0; i < 5; i++)
+	for (; i < 5; i++)
 	{
-		zombie = fork();
-		if (!zombie)
+		zombie_procss = fork();
+		if (!zombie_procss)
 			return (0);
-		else if (zombie < 0)
+		else if (zombie_procss < 0)
 		{
 			perror("Fork error");
 			exit(EXIT_FAILURE);
 		}
-		printf("Zombie process created, PID: %d\n", zombie);
+		printf("Zombie process created, PID: %d\n", zombie_procss);
 	}
 	infinite_while();
 	return (0);
