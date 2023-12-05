@@ -9,3 +9,8 @@ ufw allow 80
 # reassign ownership to user acct so that they can be writeable
 sudo chown -R "$USER":"$USER"  /var/www/html
 echo "Hello World!" > /var/www/html/index.html
+
+# redirect "301 move permanently"
+new_config="rewrite ^/redirect_me$ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;"
+sed -i "51 i $new_config" /etc/nginx/sites-available/default
+service nginx start
