@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# configure a second web-server and install nginx (indentical to web-01)
+
+# listening at port 80, update and install nginx
+sudo apt-get -y update
+sudo apt-get -y install nginx
+ufw allow 80
+
+# add customer header that displays which server is answering our HTTP req
+x_name="server_name _;\n\tadd_header X-Served-By \$hostname;"
+sed -i "s/server_name _;/$x_name/" /etc/nginx/sites-enabled/default
+
+# enable changes by restarting nginx
+sudo service nginx restart
