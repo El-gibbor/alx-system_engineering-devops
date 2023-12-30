@@ -14,7 +14,7 @@ backend alxservers
     balance roundrobin
     server web-01 52.72.22.166:80 check
     server web-02 100.25.200.146:80 check
-" > lb_config /etc/haproxy/haproxy.cfg
+" | sudo tee /etc/haproxy/haproxy.cfg > /dev/null
 
 # restart proxy
 sudo service haproxy restart
