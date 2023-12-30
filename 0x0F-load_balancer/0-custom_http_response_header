@@ -9,6 +9,5 @@ ufw allow 80
 # add customer header that displays which server is answering our HTTP req
 x_name="server_name _;\n\tadd_header X-Served-By \$hostname;"
 sudo sed -i "s/server_name _;/$x_name/" /etc/nginx/sites-enabled/default
-
 # enable changes by restarting nginx
 sudo service nginx restart
