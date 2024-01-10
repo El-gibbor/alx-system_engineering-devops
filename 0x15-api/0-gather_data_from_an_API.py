@@ -19,3 +19,4 @@ if __name__ == "__main__":
     print(f"Employee {u_data.get('name')} is done with tasks({dn}/{td}):")
     for i in td_data.json():
         print(f"\t {i.get('title')}")
+
