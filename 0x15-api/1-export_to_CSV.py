@@ -17,5 +17,4 @@ if __name__ == "__main__":
         for i in td_data.json():
             writter.writerow(
                 [i.get('userId'), u_data.get('username'), i.get('completed'),
-                 i.get('title')]
-                )
+                 i.get('title')])
