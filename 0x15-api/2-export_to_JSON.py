@@ -1,30 +1,28 @@
 #!/usr/bin/python3
-"""Simple example of exporting user data to json"""
-
-import json
-import requests
-from sys import argv as av
-
+"""using JSONPlaceholder REST API to get information about an employees
+TODO list progress and export the data to json format
+"""
 
 if __name__ == "__main__":
-    base_url = "https://jsonplaceholder.typicode.com/users/"
+    import requests
+    from sys import argv
+    from json import dump
 
-    user_data = requests.get(base_url + "{}".format(av[1])).json()
-    todo_data = requests.get(base_url + "{}/todos".format(av[1])).json()
+    uri = f'https://jsonplaceholder.typicode.com/users/{argv[1]}/'
 
-    user_id = av[1]
-    user_tasks = []
+    u_data = requests.get(uri).json()
+    td_data = requests.get(uri + 'todos')
 
-    # collect all json data into a list that we write to the file
-    for todo in todo_data:
-        task = {
-                "task": todo.get("title"),
-                "completed": todo.get("completed"),
-                "username": user_data.get("username")
-                }
-        user_tasks.append(task)
+    td_list = []
 
-    format = {user_id: user_tasks}
+    for td in td_data.json():
+        td_task = {}
+        td_task['task'] = td.get('title')
+        td_task['completed'] = td.get('completed')
+        td_task['username'] = u_data.get('username')
+        td_list.append(td_task)
 
-    with open("{}.json".format(user_id), "w") as file:
-        json.dump(format, file)
+    jsonFormat = {u_data.get('id'): td_list}
+
+    with open(f'{argv[1]}.json', 'w') as jsonFile:
+        dump(jsonFormat, jsonFile)
