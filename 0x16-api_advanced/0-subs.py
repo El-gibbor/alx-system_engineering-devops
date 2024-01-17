@@ -1,16 +1,17 @@
 #!/usr/bin/python3
-""" Module contains a function that makes an api call """
+"""This module gets the number of subs for a subreddit"""
 
 import requests
 
 
 def number_of_subscribers(subreddit):
-    """ Makes an api call to get the number of subscribers in a given subreddit
+    """gets the number of subscribbers in a given subreddit
     Args:
-        subreddit(str) - The name of the subreddit to check
+        subreddit (str): specific section, community or topic
+    Returns:
+        int: number of subscribers.
     """
-
-    url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
+    url = f"https://www.reddit.com/r/{subreddit}/about.json"
 
     data = requests.get(url, headers={'User-agent': 'my-bot'})
     if data.status_code == 200:
