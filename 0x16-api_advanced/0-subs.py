@@ -9,7 +9,7 @@ def number_of_subscribers(subreddit):
     Args:
         subreddit(str) - The name of the subreddit to check
     """
-    
+
     url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
 
     data = requests.get(url, headers={'User-agent': 'my-bot'})
