@@ -13,20 +13,24 @@ def recurse(subreddit, hot_list=[], after=None):
 
     url = f"https://www.reddit.com/r/{subreddit}/hot.json"
 
-    response = requests.get(url, headers={'User-agent': 'my-bot'},
-                            params={'after': after}, allow_redirects=False)
+    data = requests.get(url, headers={'User-agent': 'my-bot'},
+                        params={'after': after}, allow_redirects=False)
 
-    if response.status_code == 200:
-        after = response.json().get('data', {})['after']
-        post_list = response.json().get('data', {}).get('children', [])
+    if data.status_code == 200:
+        after = data.json().get('data').get('after')
+        posts = data.json().get('data').get('children')
 
-        hot_list.extend(post.get("data", {}).get("title", "") for post in post_list)
+        for post in posts:
+            hot_list.append(post.get("data").get("title"))
 
-        # If there is no 'after' value, indicating no more pages
         if after is None:
-            return hot_list if hot_list else None
+            # If there is no new page
+            if len(hot_list) == 0:
+                return None
+
+            return hot_list
         else:
-            # Recursively call the function with the 'after' value
+            # If there is another page
             return recurse(subreddit, hot_list, after)
     else:
         return None
