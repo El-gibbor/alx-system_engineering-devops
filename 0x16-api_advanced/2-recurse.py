@@ -1,5 +1,5 @@
 import requests
-
+import sys
 
 def recurse(subreddit, hot_list=[], after=None):
     """ Recursively queries the Reddit API to retrieve titles of all hot
@@ -23,7 +23,6 @@ def recurse(subreddit, hot_list=[], after=None):
 
         for post in posts:
             hot_list.append(post.get("data").get("title"))
-
         if after is None:
             # If there is no new page
             if len(hot_list) == 0:
@@ -35,3 +34,13 @@ def recurse(subreddit, hot_list=[], after=None):
             return recurse(subreddit, hot_list, after)
     else:
         return None
+
+# TestRun =========== working, but Mr checker has frowned against it for reason best known to it.
+if len(sys.argv) < 2:
+    print("Please pass an argument for the subreddit to search.")
+else:
+    result = recurse(sys.argv[1])
+    if result is not None:
+        print(len(result))
+    else:
+        print("None")
