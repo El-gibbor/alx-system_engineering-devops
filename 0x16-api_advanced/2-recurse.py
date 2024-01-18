@@ -18,11 +18,11 @@ def recurse(subreddit, hot_list=[], after=None):
                         params={'after': after}, allow_redirects=False)
 
     if data.status_code == 200:
-        after = data.json().get('data').get('after')
-        posts = data.json().get('data').get('children')
+        after = data.json()['data']['after']
+        posts = data.json()['data']['children']
 
         for post in posts:
-            hot_list.append(post.get("data").get("title"))
+            hot_list.append(post['data']['title'])
         if after is None:
             # If there is no new page
             if len(hot_list) == 0:
@@ -34,6 +34,7 @@ def recurse(subreddit, hot_list=[], after=None):
             return recurse(subreddit, hot_list, after)
     else:
         return None
+    
 
 # TestRun =========== working, but Mr checker has frowned against it for reason best known to it.
 if len(sys.argv) < 2:
