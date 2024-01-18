@@ -13,12 +13,12 @@ def top_ten(subreddit):
     data = requests.get(url, headers={'User-agent': 'my-bot'},
                         allow_redirects=False)
     if data.status_code == 200:
-        all_posts = data.json().get('data').get('children')
+        all_posts = data.json()['data']['children']
         count = 0
         for post in all_posts:
             if count == 10:
                 break
-            print(post.get('data').get('title'))
+            print(post['data']['title'])
             count = count + 1
     else:
         print("None")
