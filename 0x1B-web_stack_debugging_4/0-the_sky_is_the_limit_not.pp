@@ -1,4 +1,4 @@
-# update config files
+# update config files..
 
 exec { '/etc/nginx/nginx.conf_0':
   path    => ['usr/local/sbin:usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'],
